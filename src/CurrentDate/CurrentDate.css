@@ -1,0 +1,15 @@
+.current-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.primary-data {
+  color: #fff;
+  margin-bottom: 0px;
+  margin-top: 30px;
+}
+
+.secondary-data {
+  color: #fdf0d5;
+}

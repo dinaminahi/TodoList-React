@@ -1,0 +1,28 @@
+.Item {
+  color: #fdf0d5;
+  display: flex;
+  justify-content: space-between;
+}
+
+.item-text {
+  font-size: 20px;
+  margin: 0;
+}
+
+.completed {
+  text-decoration: line-through;
+}
+
+.labelForCheckbox {
+  display: flex;
+}
+
+.deleteIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.deleteIcon:hover {
+  cursor: pointer;
+}
