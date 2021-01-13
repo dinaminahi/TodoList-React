@@ -1,41 +1,62 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
 import "./TodoList.css";
 import CurrentDate from "../CurrentDate/CurrentDate";
-import AddItem from "../AddItem/AddItem";
-import Item from "../Item/Item";
+import AddNewTask from "../AddNewTask/AddNewTask";
+import Task from "../Task/Task";
+import nextId from "react-id-generator";
 
-function TodoList() {
+export class TodoList extends Component {
 
-  const [items, setItems] = useState(['Buy eggs', 'Cook breakfast', 'Do homework']);
-  const [addItemInputVal, setAddItemInputVal] = useState('');
+  state = {
+    tasks: [
+      { id: nextId(), text: 'Buy eggs', done: false },
+      { id: nextId(), text: 'Cook breakfast', done: false },
+      { id: nextId(), text: 'Do homework', done: false }],
+    todoListInputValue: ''
+  }
 
-  const handleAddInput = event => {
+  handleAddInput = event => {
+    const newTask = {
+      id: nextId(),
+      text: event.target.value,
+      done: false
+    }
+
     if (event.key === 'Enter') {
-      setItems([...items, event.target.value]);
-      setAddItemInputVal('');
-    } 
+      this.setState({
+        tasks: [...this.state.tasks, newTask],
+        todoListInputValue: ''
+      });
+    }
   }
 
-  const handleValueChange = event => {
-    setAddItemInputVal(event.target.value);
+  handleValueChange = event => {
+    this.setState({ todoListInputValue: event.target.value });
   }
 
-  const handleDelete = (task) => {
-     const filteredItems = items.filter(item => item !== task) ;
-     setItems(filteredItems);
+  handleDelete = (taskToDetete) => {
+    const tasks = this.state.tasks.filter(task => task.id !== taskToDetete.id);
+    this.setState({ tasks });
   }
 
-  return (
-    <div className="TodoList">
-      <CurrentDate />
-      <AddItem handleEnter={handleAddInput} handleValue={handleValueChange} value={addItemInputVal}/>
-      <div>
-        {items.map((item, index) => (
-          <Item key={index} task={item} onDelete={handleDelete}/>
-        ))}
+  render() {
+    return (
+      <div className="TodoList">
+        <CurrentDate />
+        <AddNewTask
+          handleEnter={this.handleAddInput}
+          handleValue={this.handleValueChange}
+          value={this.state.todoListInputValue} />
+        <div>
+          {this.state.tasks.map((task) => (
+            <Task key={task.id} task={task} onDelete={this.handleDelete} />
+          ))}
+        </div>
       </div>
-    </div>
-  );
+    )
+  }
 }
 
-export default TodoList;
+export default TodoList
+
+

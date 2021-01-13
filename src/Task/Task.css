@@ -1,10 +1,10 @@
-.Item {
+.Task {
   color: #fdf0d5;
   display: flex;
   justify-content: space-between;
 }
 
-.item-text {
+.task-text {
   font-size: 20px;
   margin: 0;
 }

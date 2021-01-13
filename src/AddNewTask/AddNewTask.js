@@ -1,9 +1,7 @@
 import React from "react";
-import "./AddItem.css";
-import SubjectIcon from '@material-ui/icons/Subject';
+import "./AddNewTask.css";
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import InputAdornment from '@material-ui/core/InputAdornment';
 
 const ValidationTextField = withStyles({
   root: {
@@ -21,10 +19,10 @@ const ValidationTextField = withStyles({
   },
 })(TextField);
 
-function AddItem({ handleEnter, value, handleValue }) {
+function AddNewTask({ handleEnter, value, handleValue }) {
 
   return (
-    <div className="AddItem">
+    <div className="AddNewTask">
       <ValidationTextField color="secondary" value={value}
         onChange={handleValue} onKeyPress={handleEnter}
         id="outlined-basic" label="Add a task..." variant="outlined" />
@@ -32,4 +30,4 @@ function AddItem({ handleEnter, value, handleValue }) {
   );
 }
 
-export default AddItem;
+export default AddNewTask;

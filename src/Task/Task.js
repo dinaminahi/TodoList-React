@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './Item.css'
+import './Task.css'
 import { withStyles } from '@material-ui/core/styles';
 import { deepOrange } from '@material-ui/core/colors';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -18,17 +18,17 @@ const CustomCheckbox = withStyles({
 })((props) => <Checkbox color="default" {...props} />);
 
 
-function Item({ task, onDelete }) {
+function Task({ task, onDelete }) {
 
     const [checked, setChecked] = useState(false);
-    const label = <p className={`item-text ${checked ? 'completed' : ''}`}>{task}</p>;
+    const label = <p className={`task-text ${checked ? 'completed' : ''}`}>{task.text}</p>;
 
     const handleChange = (event) => {
         setChecked(event.target.checked);
     };
 
     return (
-        <div className="Item">
+        <div className="Task">
             <FormControlLabel
                 control={<CustomCheckbox checked={checked} onChange={handleChange} name="checkedC" />}
                 label={label}
@@ -38,4 +38,4 @@ function Item({ task, onDelete }) {
     );
 }
 
-export default Item;
+export default Task;
